@@ -1,0 +1,26 @@
+[
+  {
+    "date": "2026-04-20",
+    "channel": "project-alpha",
+    "author": "Ari",
+    "text": "API contract is ready for frontend integration."
+  },
+  {
+    "date": "2026-04-21",
+    "channel": "project-alpha",
+    "author": "Sam",
+    "text": "Risk: vendor SSO metadata is delayed until Thursday."
+  },
+  {
+    "date": "2026-04-22",
+    "channel": "project-alpha",
+    "author": "Priya",
+    "text": "Dashboard wireframes were approved by sales leadership."
+  },
+  {
+    "date": "2026-04-23",
+    "channel": "project-alpha",
+    "author": "Noah",
+    "text": "Blocked on production test credentials for the billing connector."
+  }
+]

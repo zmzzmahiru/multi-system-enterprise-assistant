@@ -1,0 +1,23 @@
+[
+  {
+    "date": "2026-04-21",
+    "title": "Project Alpha standup",
+    "decisions": [
+      {
+        "decision": "Keep the MVP scope focused on SSO, billing connector, and dashboard read-only views."
+      },
+      {
+        "decision": "Move launch readiness review to Friday afternoon."
+      }
+    ]
+  },
+  {
+    "date": "2026-04-23",
+    "title": "Go-to-market sync",
+    "decisions": [
+      {
+        "decision": "Sales will pilot the dashboard with three customer teams before broad rollout."
+      }
+    ]
+  }
+]

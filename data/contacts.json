@@ -1,0 +1,18 @@
+{
+  "hr": {
+    "name": "Maya Chen",
+    "email": "hr-onboarding@example.com"
+  },
+  "it": {
+    "name": "IT Helpdesk",
+    "email": "it-helpdesk@example.com"
+  },
+  "facilities": {
+    "name": "Facilities Desk",
+    "email": "facilities@example.com"
+  },
+  "security": {
+    "name": "Security Operations",
+    "email": "security@example.com"
+  }
+}

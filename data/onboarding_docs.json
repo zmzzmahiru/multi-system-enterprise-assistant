@@ -1,0 +1,26 @@
+[
+  {
+    "title": "First-week schedule",
+    "content": "New hires should complete HR paperwork on Monday, security training by Wednesday, and role-specific setup with their manager by Friday.",
+    "tags": ["first week", "schedule", "new hire"],
+    "source": "data/onboarding_docs.json#first-week-schedule"
+  },
+  {
+    "title": "Laptop and account access",
+    "content": "IT provisions laptops, email, VPN, Slack, and Jira access. If access is missing, open a helpdesk ticket and copy your manager.",
+    "tags": ["laptop", "access", "it", "vpn"],
+    "source": "data/onboarding_docs.json#laptop-and-account-access"
+  },
+  {
+    "title": "Benefits enrollment",
+    "content": "Benefits must be selected within 30 days of your start date. HR hosts a live benefits Q&A every Tuesday at 10:00.",
+    "tags": ["benefits", "hr", "enrollment"],
+    "source": "data/onboarding_docs.json#benefits-enrollment"
+  },
+  {
+    "title": "Office badge and facilities",
+    "content": "Facilities issues office badges after identity verification. Temporary badges are available at reception for the first two days.",
+    "tags": ["badge", "facilities", "office"],
+    "source": "data/onboarding_docs.json#office-badge-and-facilities"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "TASK-101",
+    "title": "Finalize API contract",
+    "owner": "Ari",
+    "status": "done"
+  },
+  {
+    "id": "TASK-102",
+    "title": "Build dashboard prototype",
+    "owner": "Priya",
+    "status": "in_progress"
+  },
+  {
+    "id": "TASK-103",
+    "title": "Configure SSO integration",
+    "owner": "Sam",
+    "status": "blocked"
+  },
+  {
+    "id": "TASK-104",
+    "title": "Validate billing connector",
+    "owner": "Noah",
+    "status": "blocked"
+  },
+  {
+    "id": "TASK-105",
+    "title": "Draft launch checklist",
+    "owner": "Ari",
+    "status": "done"
+  }
+]
