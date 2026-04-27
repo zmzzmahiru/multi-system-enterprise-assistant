@@ -3,13 +3,10 @@ from connectors.mock_docs import search_onboarding_docs
 
 
 def format_contact(label: str, contact: dict[str, str]) -> str:
-    details = [
-        f"{label}: {contact['name']}",
-        contact.get("role", ""),
-        contact["email"],
-        contact.get("slack", ""),
-    ]
-    return " - ".join(detail for detail in details if detail)
+    role = contact.get("role", "Contact")
+    slack = contact.get("slack")
+    slack_text = f", {slack}" if slack else ""
+    return f"{label}: {contact['name']} ({role}) - {contact['email']}{slack_text}"
 
 
 def run_onboarding_agent(query: str):
@@ -41,9 +38,9 @@ def run_onboarding_agent(query: str):
     ]
 
     summary = (
-        "Found onboarding guidance from the internal first-week docs."
+        "Here is the most relevant first-week onboarding guidance I found for your question."
         if selected_docs
-        else "No direct onboarding document matched the query, so here are the core first-week resources."
+        else "I could not find an exact onboarding match, so here are the core first-week resources to get started."
     )
     tasks = [
         task

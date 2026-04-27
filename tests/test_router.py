@@ -1,4 +1,5 @@
 import unittest
+import re
 
 from backend.router import infer_workflow, route_query
 from backend.schemas import QueryRequest
@@ -19,9 +20,15 @@ class RouterTests(unittest.TestCase):
 
         self.assertEqual(response.workflow, "weekly_reporting")
         self.assertTrue(response.completed_work)
+        self.assertTrue(response.in_progress_work)
         self.assertTrue(response.blockers)
-        self.assertTrue(response.owners)
+        self.assertTrue(response.owner_task_counts)
         self.assertTrue(response.next_steps)
+
+        counts = [int(value) for value in re.findall(r"(\d+) item\(s\)|(\d+) blocker\(s\)", response.summary) for value in value if value]
+        self.assertEqual(counts[0], len(response.completed_work))
+        self.assertEqual(counts[1], len(response.in_progress_work))
+        self.assertEqual(counts[2], len(response.blockers))
 
     def test_asks_for_clarification_when_route_is_unclear(self):
         response = route_query(QueryRequest(query="Can you help me with this?"))

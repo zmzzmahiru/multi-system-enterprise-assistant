@@ -13,8 +13,9 @@ const fieldLabels = {
   people_to_contact: "People To Contact",
   meetings: "Meetings",
   completed_work: "Completed Work",
+  in_progress_work: "In Progress Work",
   blockers: "Blockers",
-  owners: "Owners",
+  owner_task_counts: "Owner Task Counts",
   next_steps: "Next Steps",
   sources: "Sources",
 };

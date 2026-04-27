@@ -119,32 +119,29 @@ Request:
 
 The client does not need to provide a workflow. The backend infers one from the query using a small keyword-based router.
 
-Response:
+Onboarding response:
 
 ```json
 {
   "workflow": "onboarding",
-  "summary": "Found onboarding guidance from the internal first-week docs.",
+  "summary": "Here is the most relevant first-week onboarding guidance I found for your question.",
   "first_week_tasks": [
-    "Complete HR paperwork on Monday.",
-    "Finish security training by Wednesday.",
-    "Confirm role-specific setup with your manager by Friday.",
-    "Open an IT helpdesk ticket for any missing laptop, email, VPN, Slack, or Jira access."
+    "Sign in to Okta and verify email, VPN, Slack, Jira, and GitHub access.",
+    "Open a ServiceDesk ticket for any missing application access.",
+    "Enroll the laptop in device management before accessing customer data."
   ],
   "documents_to_read": [
-    "First-week schedule",
-    "Benefits enrollment"
+    "Device, SSO, and Application Access"
   ],
   "people_to_contact": [
-    "HR: Maya Chen (hr-onboarding@example.com)",
-    "IT Helpdesk: IT Helpdesk (it-helpdesk@example.com)",
-    "Facilities: Facilities Desk (facilities@example.com)"
+    "People Ops: Maya Chen (People Operations Partner) - maya.chen@acme-corp.example, @maya-people",
+    "IT Service Desk: Jordan Patel (IT Service Desk Lead) - it-servicedesk@acme-corp.example, @it-help",
+    "Workplace: Elena Garcia (Workplace Experience Coordinator) - workplace@acme-corp.example, @workplace"
   ],
   "meetings": [
-    "Benefits Q&A on Tuesday at 10:00.",
-    "Manager setup check-in by Friday."
+    "IT setup office hours are available Tuesday and Thursday at 14:00."
   ],
-  "sources": ["data/onboarding_docs.json#first-week-schedule"]
+  "sources": ["data/onboarding_docs.json#laptop-and-account-access"]
 }
 ```
 
@@ -153,25 +150,31 @@ Weekly reporting response:
 ```json
 {
   "workflow": "weekly_reporting",
-  "summary": "Completed 2 task(s), kept 1 task(s) in progress, and found 2 blocker(s).",
+  "summary": "This week, the team completed 2 item(s), has 2 item(s) in progress, and is tracking 2 blocker(s).",
   "completed_work": [
-    "Finalize API contract",
-    "Draft launch checklist"
+    "Publish customer dashboard API contract: Confluence page published with response examples and error codes.",
+    "Draft pilot launch checklist: Checklist covers pilot accounts, rollback owner, support channel, and launch comms."
+  ],
+  "in_progress_work": [
+    "Build read-only pilot dashboard: Account health table is implemented; renewal date filter is still in review.",
+    "Prepare customer success kickoff notes: Success criteria are drafted; waiting for final pilot account list confirmation."
   ],
   "blockers": [
-    "Configure SSO integration",
-    "Validate billing connector",
-    "Risk: vendor SSO metadata is delayed until Thursday."
+    "Validate Northstar Bank SSO integration: Waiting on SAML metadata from Northstar Bank IT.",
+    "Run billing connector validation: Finance has not approved access to the shared Stripe sandbox."
   ],
-  "owners": {
-    "Ari": 2,
-    "Priya": 1,
-    "Sam": 1,
-    "Noah": 1
+  "owner_task_counts": {
+    "Ari Nguyen": 1,
+    "Priya Shah": 1,
+    "Sam Rivera": 1,
+    "Noah Kim": 1,
+    "Mina Okafor": 2
   },
   "next_steps": [
-    "Continue: Build dashboard prototype (Priya)",
-    "Resolve blocker: Configure SSO integration (Sam)"
+    "Priya Shah: Finish renewal date filtering and send preview link to Sales.",
+    "Mina Okafor: Send kickoff notes to Customer Success before Monday EOD.",
+    "Sam Rivera: Escalate through Customer Success if metadata is not received by Tuesday noon.",
+    "Noah Kim: Finance approver to grant sandbox credentials or provide masked export."
   ],
   "sources": [
     "data/chat_logs.json",

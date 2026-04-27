@@ -24,8 +24,9 @@ class WeeklyReportingResponse(BaseModel):
     workflow: Literal["weekly_reporting"]
     summary: str
     completed_work: list[str] = Field(default_factory=list)
+    in_progress_work: list[str] = Field(default_factory=list)
     blockers: list[str] = Field(default_factory=list)
-    owners: dict[str, int] = Field(default_factory=dict)
+    owner_task_counts: dict[str, int] = Field(default_factory=dict)
     next_steps: list[str] = Field(default_factory=list)
     sources: list[str] = Field(default_factory=list)
 
