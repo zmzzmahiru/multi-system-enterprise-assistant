@@ -79,6 +79,52 @@ The frontend expects the backend to be running at:
 http://127.0.0.1:8000
 ```
 
+## Demo Prompts
+
+Use these prompts in the frontend or send them to `POST /query`.
+
+| Prompt | Expected workflow |
+| --- | --- |
+| `Create a weekly status report for the team.` | `weekly_reporting` |
+| `Help onboard a new teammate.` | `onboarding` |
+| `Can you help me with this?` | `fallback` |
+
+Weekly report routing metadata:
+
+```json
+{
+  "routing": {
+    "selected_workflow": "weekly_reporting",
+    "routing_reason": "Matched weekly/report/status-related keywords",
+    "routing_confidence": "rule-based"
+  }
+}
+```
+
+Onboarding routing metadata:
+
+```json
+{
+  "routing": {
+    "selected_workflow": "onboarding",
+    "routing_reason": "Matched onboarding/new-hire/access-related keywords",
+    "routing_confidence": "rule-based"
+  }
+}
+```
+
+Fallback routing metadata:
+
+```json
+{
+  "routing": {
+    "selected_workflow": "fallback",
+    "routing_reason": "No clear keyword match; asking the user to clarify",
+    "routing_confidence": "low-confidence rule-based"
+  }
+}
+```
+
 ## Example Queries
 
 Onboarding:
@@ -117,13 +163,18 @@ Request:
 }
 ```
 
-The client does not need to provide a workflow. The backend infers one from the query using a small keyword-based router.
+The client does not need to provide a workflow. The backend infers one from the query using a small keyword-based router and returns routing metadata explaining the decision.
 
 Onboarding response:
 
 ```json
 {
   "workflow": "onboarding",
+  "routing": {
+    "selected_workflow": "onboarding",
+    "routing_reason": "Matched onboarding/new-hire/access-related keywords",
+    "routing_confidence": "rule-based"
+  },
   "summary": "Here is the most relevant first-week onboarding guidance I found for your question.",
   "first_week_tasks": [
     "Sign in to Okta and verify email, VPN, Slack, Jira, and GitHub access.",
@@ -150,6 +201,11 @@ Weekly reporting response:
 ```json
 {
   "workflow": "weekly_reporting",
+  "routing": {
+    "selected_workflow": "weekly_reporting",
+    "routing_reason": "Matched weekly/report/status-related keywords",
+    "routing_confidence": "rule-based"
+  },
   "summary": "This week, the team completed 2 item(s), has 2 item(s) in progress, and is tracking 2 blocker(s).",
   "completed_work": [
     "Publish customer dashboard API contract: Confluence page published with response examples and error codes.",
@@ -189,6 +245,11 @@ If the router cannot confidently choose a workflow, it asks for clarification:
 ```json
 {
   "workflow": null,
+  "routing": {
+    "selected_workflow": "fallback",
+    "routing_reason": "No clear keyword match; asking the user to clarify",
+    "routing_confidence": "low-confidence rule-based"
+  },
   "summary": "I am not sure which workflow should handle this. Please clarify whether this is an onboarding question or a weekly reporting request.",
   "sources": []
 }
@@ -198,6 +259,9 @@ If the router cannot confidently choose a workflow, it asks for clarification:
 
 ```bash
 python -m unittest discover -s tests
+python -m compileall backend agents connectors tests
+python -c "from backend.main import app; print(app.title)"
+node --check frontend/app.js
 ```
 
 ## Next Steps

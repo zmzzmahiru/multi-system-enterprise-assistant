@@ -8,6 +8,7 @@ from backend.schemas import (
     OnboardingResponse,
     QueryRequest,
     QueryResponse,
+    RoutingMetadata,
     WeeklyReportingResponse,
     WorkflowName,
 )
@@ -47,6 +48,7 @@ class RouteDecision:
     workflow: WorkflowName | None
     confidence: float
     scores: dict[str, int]
+    reason: str
 
 
 def score_keywords(query: str, keywords: set[str]) -> int:
@@ -71,7 +73,17 @@ def infer_workflow(query: str) -> RouteDecision:
     }
 
     if onboarding_score == reporting_score:
-        return RouteDecision(workflow=None, confidence=0.0, scores=scores)
+        reason = (
+            "No clear keyword match; asking the user to clarify"
+            if onboarding_score == 0
+            else "Matched both onboarding and weekly-reporting keywords; asking the user to clarify"
+        )
+        return RouteDecision(
+            workflow=None,
+            confidence=0.0,
+            scores=scores,
+            reason=reason,
+        )
 
     if reporting_score > onboarding_score:
         confidence = reporting_score / (reporting_score + onboarding_score)
@@ -79,18 +91,34 @@ def infer_workflow(query: str) -> RouteDecision:
             workflow="weekly_reporting",
             confidence=confidence,
             scores=scores,
+            reason="Matched weekly/report/status-related keywords",
         )
 
     confidence = onboarding_score / (reporting_score + onboarding_score)
-    return RouteDecision(workflow="onboarding", confidence=confidence, scores=scores)
+    return RouteDecision(
+        workflow="onboarding",
+        confidence=confidence,
+        scores=scores,
+        reason="Matched onboarding/new-hire/access-related keywords",
+    )
+
+
+def build_routing_metadata(decision: RouteDecision) -> RoutingMetadata:
+    return RoutingMetadata(
+        selected_workflow=decision.workflow or "fallback",
+        routing_reason=decision.reason,
+        routing_confidence="rule-based" if decision.workflow else "low-confidence rule-based",
+    )
 
 
 def route_query(request: QueryRequest) -> QueryResponse:
     decision = infer_workflow(request.query)
+    routing = build_routing_metadata(decision)
 
     if decision.workflow is None:
         return ClarificationResponse(
             workflow=None,
+            routing=routing,
             summary=(
                 "I am not sure which workflow should handle this. "
                 "Please clarify whether this is an onboarding question or a weekly reporting request."
@@ -99,5 +127,8 @@ def route_query(request: QueryRequest) -> QueryResponse:
         )
 
     if decision.workflow == "weekly_reporting":
-        return WeeklyReportingResponse(**run_weekly_reporting_agent(request.query))
-    return OnboardingResponse(**run_onboarding_agent(request.query))
+        return WeeklyReportingResponse(
+            **run_weekly_reporting_agent(request.query),
+            routing=routing,
+        )
+    return OnboardingResponse(**run_onboarding_agent(request.query), routing=routing)

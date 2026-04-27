@@ -12,6 +12,11 @@
         <h1>Enterprise Assistant</h1>
         <form id="query-form" class="query-form">
           <label for="query-input">Query</label>
+          <div class="sample-prompts" aria-label="Sample prompts">
+            <button type="button" class="sample-prompt" data-prompt="Create a weekly status report for the team.">Weekly report</button>
+            <button type="button" class="sample-prompt" data-prompt="Help onboard a new teammate.">Onboarding</button>
+            <button type="button" class="sample-prompt" data-prompt="Can you help me with this?">Fallback / unclear request</button>
+          </div>
           <div class="query-row">
             <input
               id="query-input"

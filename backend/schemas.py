@@ -10,8 +10,15 @@ class QueryRequest(BaseModel):
     query: str = Field(..., min_length=1, description="User question or instruction.")
 
 
+class RoutingMetadata(BaseModel):
+    selected_workflow: str
+    routing_reason: str
+    routing_confidence: str
+
+
 class OnboardingResponse(BaseModel):
     workflow: Literal["onboarding"]
+    routing: RoutingMetadata
     summary: str
     first_week_tasks: list[str] = Field(default_factory=list)
     documents_to_read: list[str] = Field(default_factory=list)
@@ -22,6 +29,7 @@ class OnboardingResponse(BaseModel):
 
 class WeeklyReportingResponse(BaseModel):
     workflow: Literal["weekly_reporting"]
+    routing: RoutingMetadata
     summary: str
     completed_work: list[str] = Field(default_factory=list)
     in_progress_work: list[str] = Field(default_factory=list)
@@ -33,6 +41,7 @@ class WeeklyReportingResponse(BaseModel):
 
 class ClarificationResponse(BaseModel):
     workflow: None
+    routing: RoutingMetadata
     summary: str
     sources: list[str] = Field(default_factory=list)
 

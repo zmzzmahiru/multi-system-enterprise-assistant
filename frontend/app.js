@@ -5,6 +5,7 @@ const input = document.querySelector("#query-input");
 const workflowEl = document.querySelector("#workflow");
 const resultEl = document.querySelector("#result");
 const submitButton = form.querySelector("button");
+const samplePromptButtons = document.querySelectorAll(".sample-prompt");
 
 const fieldLabels = {
   summary: "Summary",
@@ -18,6 +19,9 @@ const fieldLabels = {
   owner_task_counts: "Owner Task Counts",
   next_steps: "Next Steps",
   sources: "Sources",
+  selected_workflow: "Workflow Selected",
+  routing_reason: "Reason",
+  routing_confidence: "Confidence",
 };
 
 function formatLabel(key) {
@@ -70,12 +74,12 @@ function renderValue(value) {
 }
 
 function renderResponse(data) {
-  workflowEl.textContent = data.workflow || "Needs clarification";
+  workflowEl.textContent = data.routing?.selected_workflow || data.workflow || "Needs clarification";
   resultEl.className = "result";
   resultEl.replaceChildren();
 
   Object.entries(data)
-    .filter(([key]) => key !== "workflow")
+    .filter(([key]) => key !== "workflow" && key !== "routing")
     .forEach(([key, value]) => {
       const section = document.createElement("section");
       section.className = "field";
@@ -86,6 +90,17 @@ function renderResponse(data) {
       section.append(heading, renderValue(value));
       resultEl.appendChild(section);
     });
+
+  if (data.routing) {
+    const section = document.createElement("section");
+    section.className = "field routing-field";
+
+    const heading = document.createElement("h2");
+    heading.textContent = "Routing";
+
+    section.append(heading, renderObject(data.routing));
+    resultEl.appendChild(section);
+  }
 }
 
 function renderError(message) {
@@ -128,4 +143,11 @@ form.addEventListener("submit", async (event) => {
     submitButton.disabled = false;
     submitButton.textContent = "Submit";
   }
+});
+
+samplePromptButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    input.value = button.dataset.prompt;
+    input.focus();
+  });
 });

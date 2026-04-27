@@ -7,9 +7,12 @@ from backend.schemas import QueryRequest
 
 class RouterTests(unittest.TestCase):
     def test_routes_onboarding_questions(self):
-        response = route_query(QueryRequest(query="How do I get laptop and VPN access?"))
+        response = route_query(QueryRequest(query="New hire question: how do I get laptop and VPN access?"))
 
         self.assertEqual(response.workflow, "onboarding")
+        self.assertEqual(response.routing.selected_workflow, "onboarding")
+        self.assertIn("onboarding", response.routing.routing_reason)
+        self.assertEqual(response.routing.routing_confidence, "rule-based")
         self.assertTrue(response.first_week_tasks)
         self.assertTrue(response.documents_to_read)
         self.assertTrue(response.people_to_contact)
@@ -19,6 +22,9 @@ class RouterTests(unittest.TestCase):
         response = route_query(QueryRequest(query="Generate a weekly status summary"))
 
         self.assertEqual(response.workflow, "weekly_reporting")
+        self.assertEqual(response.routing.selected_workflow, "weekly_reporting")
+        self.assertIn("weekly", response.routing.routing_reason)
+        self.assertEqual(response.routing.routing_confidence, "rule-based")
         self.assertTrue(response.completed_work)
         self.assertTrue(response.in_progress_work)
         self.assertTrue(response.blockers)
@@ -34,6 +40,8 @@ class RouterTests(unittest.TestCase):
         response = route_query(QueryRequest(query="Can you help me with this?"))
 
         self.assertIsNone(response.workflow)
+        self.assertEqual(response.routing.selected_workflow, "fallback")
+        self.assertIn("clarify", response.routing.routing_reason)
         self.assertIn("Please clarify", response.summary)
         self.assertEqual(response.sources, [])
 
