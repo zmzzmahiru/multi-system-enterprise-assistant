@@ -1,18 +1,30 @@
 {
   "hr": {
     "name": "Maya Chen",
-    "email": "hr-onboarding@example.com"
+    "role": "People Operations Partner",
+    "email": "maya.chen@acme-corp.example",
+    "slack": "@maya-people",
+    "office_hours": "Tuesday 10:00-11:00"
   },
   "it": {
-    "name": "IT Helpdesk",
-    "email": "it-helpdesk@example.com"
+    "name": "Jordan Patel",
+    "role": "IT Service Desk Lead",
+    "email": "it-servicedesk@acme-corp.example",
+    "slack": "@it-help",
+    "office_hours": "Tuesday and Thursday 14:00-15:00"
   },
   "facilities": {
-    "name": "Facilities Desk",
-    "email": "facilities@example.com"
+    "name": "Elena Garcia",
+    "role": "Workplace Experience Coordinator",
+    "email": "workplace@acme-corp.example",
+    "slack": "@workplace",
+    "office_hours": "Weekdays 09:00-17:00 at reception"
   },
   "security": {
     "name": "Security Operations",
-    "email": "security@example.com"
+    "role": "Security Response Team",
+    "email": "security@acme-corp.example",
+    "slack": "@security-help",
+    "office_hours": "Urgent issues monitored 24/7"
   }
 }

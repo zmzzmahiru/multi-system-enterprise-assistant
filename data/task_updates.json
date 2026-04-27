@@ -1,32 +1,56 @@
 [
   {
-    "id": "TASK-101",
-    "title": "Finalize API contract",
-    "owner": "Ari",
-    "status": "done"
+    "id": "ATL-101",
+    "title": "Publish customer dashboard API contract",
+    "owner": "Ari Nguyen",
+    "status": "done",
+    "update": "Confluence page published with response examples and error codes.",
+    "due_date": "2026-04-20"
   },
   {
-    "id": "TASK-102",
-    "title": "Build dashboard prototype",
-    "owner": "Priya",
-    "status": "in_progress"
+    "id": "ATL-102",
+    "title": "Build read-only pilot dashboard",
+    "owner": "Priya Shah",
+    "status": "in_progress",
+    "update": "Account health table is implemented; renewal date filter is still in review.",
+    "next_step": "Finish renewal date filtering and send preview link to Sales.",
+    "due_date": "2026-04-29"
   },
   {
-    "id": "TASK-103",
-    "title": "Configure SSO integration",
-    "owner": "Sam",
-    "status": "blocked"
+    "id": "ATL-103",
+    "title": "Validate Northstar Bank SSO integration",
+    "owner": "Sam Rivera",
+    "status": "blocked",
+    "update": "Okta app is configured but cannot be tested until customer SAML metadata arrives.",
+    "blocker": "Waiting on SAML metadata from Northstar Bank IT.",
+    "next_step": "Escalate through Customer Success if metadata is not received by Tuesday noon.",
+    "due_date": "2026-04-30"
   },
   {
-    "id": "TASK-104",
-    "title": "Validate billing connector",
-    "owner": "Noah",
-    "status": "blocked"
+    "id": "ATL-104",
+    "title": "Run billing connector validation",
+    "owner": "Noah Kim",
+    "status": "blocked",
+    "update": "Unit tests pass locally, but end-to-end validation needs production-like Stripe test credentials.",
+    "blocker": "Finance has not approved access to the shared Stripe sandbox.",
+    "next_step": "Finance approver to grant sandbox credentials or provide masked export.",
+    "due_date": "2026-04-30"
   },
   {
-    "id": "TASK-105",
-    "title": "Draft launch checklist",
-    "owner": "Ari",
-    "status": "done"
+    "id": "ATL-105",
+    "title": "Draft pilot launch checklist",
+    "owner": "Mina Okafor",
+    "status": "done",
+    "update": "Checklist covers pilot accounts, rollback owner, support channel, and launch comms.",
+    "due_date": "2026-04-24"
+  },
+  {
+    "id": "ATL-106",
+    "title": "Prepare customer success kickoff notes",
+    "owner": "Mina Okafor",
+    "status": "in_progress",
+    "update": "Success criteria are drafted; waiting for final pilot account list confirmation.",
+    "next_step": "Send kickoff notes to Customer Success before Monday EOD.",
+    "due_date": "2026-04-29"
   }
 ]

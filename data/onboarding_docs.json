@@ -1,26 +1,57 @@
 [
   {
-    "title": "First-week schedule",
-    "content": "New hires should complete HR paperwork on Monday, security training by Wednesday, and role-specific setup with their manager by Friday.",
-    "tags": ["first week", "schedule", "new hire"],
+    "title": "New Hire First Week Checklist",
+    "content": "All new hires complete Workday profile setup, tax forms, direct deposit, security awareness training, and a manager-led 30/60/90 day planning session during the first week.",
+    "tasks": [
+      "Complete Workday profile, tax forms, and direct deposit by Monday afternoon.",
+      "Finish security awareness training before Wednesday standup.",
+      "Draft a 30/60/90 day plan with your manager by Friday."
+    ],
+    "meetings": [
+      "Manager 30/60/90 planning session on Friday.",
+      "New hire cohort orientation on Monday at 10:00."
+    ],
+    "tags": ["first week", "schedule", "new hire", "workday", "orientation"],
     "source": "data/onboarding_docs.json#first-week-schedule"
   },
   {
-    "title": "Laptop and account access",
-    "content": "IT provisions laptops, email, VPN, Slack, and Jira access. If access is missing, open a helpdesk ticket and copy your manager.",
-    "tags": ["laptop", "access", "it", "vpn"],
+    "title": "Device, SSO, and Application Access",
+    "content": "IT ships laptops before start date and provisions Okta, email, VPN, Slack, Jira, and GitHub access. Missing access should be filed through ServiceDesk with the manager copied.",
+    "tasks": [
+      "Sign in to Okta and verify email, VPN, Slack, Jira, and GitHub access.",
+      "Open a ServiceDesk ticket for any missing application access.",
+      "Enroll the laptop in device management before accessing customer data."
+    ],
+    "meetings": [
+      "IT setup office hours are available Tuesday and Thursday at 14:00."
+    ],
+    "tags": ["laptop", "access", "it", "vpn", "okta", "github", "servicedesk"],
     "source": "data/onboarding_docs.json#laptop-and-account-access"
   },
   {
-    "title": "Benefits enrollment",
-    "content": "Benefits must be selected within 30 days of your start date. HR hosts a live benefits Q&A every Tuesday at 10:00.",
-    "tags": ["benefits", "hr", "enrollment"],
+    "title": "Benefits and Payroll Enrollment",
+    "content": "Medical, dental, vision, retirement, and commuter benefits must be selected within 30 days of start date. Payroll changes entered before Wednesday are reflected in the next pay cycle.",
+    "tasks": [
+      "Review medical, dental, vision, retirement, and commuter benefit options.",
+      "Submit benefit elections within 30 days of your start date.",
+      "Confirm payroll and direct deposit details before Wednesday."
+    ],
+    "meetings": [
+      "Benefits Q&A with People Ops every Tuesday at 10:00."
+    ],
+    "tags": ["benefits", "hr", "payroll", "enrollment"],
     "source": "data/onboarding_docs.json#benefits-enrollment"
   },
   {
-    "title": "Office badge and facilities",
-    "content": "Facilities issues office badges after identity verification. Temporary badges are available at reception for the first two days.",
-    "tags": ["badge", "facilities", "office"],
+    "title": "Office Badge, Building Access, and Desk Setup",
+    "content": "Facilities issues permanent badges after identity verification. Temporary badges are available at reception, and hybrid employees can reserve hotel desks through Robin.",
+    "tasks": [
+      "Bring government ID to reception for badge verification.",
+      "Reserve a hotel desk in Robin before visiting the office.",
+      "Request ergonomic equipment through the Facilities portal if needed."
+    ],
+    "meetings": [],
+    "tags": ["badge", "facilities", "office", "desk", "robin"],
     "source": "data/onboarding_docs.json#office-badge-and-facilities"
   }
 ]

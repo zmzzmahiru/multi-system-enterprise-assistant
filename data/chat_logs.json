@@ -1,26 +1,32 @@
 [
   {
     "date": "2026-04-20",
-    "channel": "project-alpha",
-    "author": "Ari",
-    "text": "API contract is ready for frontend integration."
+    "channel": "proj-atlas-launch",
+    "author": "Ari Nguyen",
+    "text": "Published the customer dashboard API contract in Confluence and tagged frontend for review."
   },
   {
     "date": "2026-04-21",
-    "channel": "project-alpha",
-    "author": "Sam",
-    "text": "Risk: vendor SSO metadata is delayed until Thursday."
+    "channel": "proj-atlas-launch",
+    "author": "Sam Rivera",
+    "text": "Risk: Northstar Bank has not sent SAML metadata yet, so SSO validation may slip by one day."
   },
   {
     "date": "2026-04-22",
-    "channel": "project-alpha",
-    "author": "Priya",
-    "text": "Dashboard wireframes were approved by sales leadership."
+    "channel": "proj-atlas-launch",
+    "author": "Priya Shah",
+    "text": "Sales approved the pilot dashboard wireframes after we added account health and renewal date columns."
   },
   {
     "date": "2026-04-23",
-    "channel": "project-alpha",
-    "author": "Noah",
-    "text": "Blocked on production test credentials for the billing connector."
+    "channel": "proj-atlas-launch",
+    "author": "Noah Kim",
+    "text": "Blocked on production-like Stripe test credentials for billing connector validation."
+  },
+  {
+    "date": "2026-04-24",
+    "channel": "proj-atlas-launch",
+    "author": "Mina Okafor",
+    "text": "Customer Success confirmed the three pilot accounts and shared success criteria for Monday kickoff."
   }
 ]

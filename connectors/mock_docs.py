@@ -5,11 +5,11 @@ from pathlib import Path
 DATA_PATH = Path(__file__).resolve().parents[1] / "data" / "onboarding_docs.json"
 
 
-def get_onboarding_docs() -> list[dict[str, str]]:
+def get_onboarding_docs() -> list[dict]:
     return json.loads(DATA_PATH.read_text(encoding="utf-8"))
 
 
-def search_onboarding_docs(query: str) -> list[dict[str, str]]:
+def search_onboarding_docs(query: str) -> list[dict]:
     terms = {term.strip(".,?!").lower() for term in query.split() if len(term) > 2}
     docs = get_onboarding_docs()
 

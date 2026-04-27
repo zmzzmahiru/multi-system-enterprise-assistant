@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Enterprise Assistant</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="panel">
+        <h1>Enterprise Assistant</h1>
+        <form id="query-form" class="query-form">
+          <label for="query-input">Query</label>
+          <div class="query-row">
+            <input
+              id="query-input"
+              name="query"
+              type="text"
+              autocomplete="off"
+              placeholder="How do I get VPN access?"
+              required
+            >
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel result-panel" aria-live="polite">
+        <div class="result-header">
+          <span class="label">Workflow</span>
+          <strong id="workflow">No query yet</strong>
+        </div>
+        <div id="result" class="result empty">Results will appear here.</div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

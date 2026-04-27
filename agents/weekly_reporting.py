@@ -20,41 +20,48 @@ def run_weekly_reporting_agent(query: str):
         for meeting in meetings
         for note in meeting.get("decisions", [])
     ]
+    action_items = [
+        item
+        for meeting in meetings
+        for item in meeting.get("action_items", [])
+    ]
     risks = [
         message["text"]
         for message in chat_logs
         if any(token in message["text"].lower() for token in ("blocked", "risk", "delay"))
     ]
-
-    answer = "\n".join(
-        [
-            "Weekly summary",
-            "",
-            f"- Completed: {len(completed)} task(s): {', '.join(task['title'] for task in completed)}.",
-            f"- In progress: {len(in_progress)} task(s): {', '.join(task['title'] for task in in_progress)}.",
-            f"- Blocked: {len(blocked)} task(s): {', '.join(task['title'] for task in blocked) or 'None'}.",
-            f"- Most active task owner: {owners.most_common(1)[0][0]}.",
-            "",
-            "Key decisions:",
-            *[f"- {decision}" for decision in decisions],
-            "",
-            "Risks and follow-ups:",
-            *([f"- {risk}" for risk in risks] or ["- No major risks found in mock logs."]),
-        ]
-    )
+    next_steps = [
+        *[
+            f"{task['owner']}: {task.get('next_step', 'Continue ' + task['title'])}"
+            for task in in_progress
+        ],
+        *[
+            f"{task['owner']}: {task.get('next_step', 'Resolve blocker for ' + task['title'])}"
+            for task in blocked
+        ],
+        *[f"Decision follow-up: {decision}" for decision in decisions[:2]],
+        *[f"Meeting action: {item}" for item in action_items[:3]],
+    ]
 
     return {
         "workflow": "weekly_reporting",
-        "answer": answer,
+        "summary": (
+            f"Completed {len(completed)} task(s), kept {len(in_progress)} task(s) in progress, "
+            f"and found {len(blocked)} blocker(s)."
+        ),
+        "completed_work": [
+            f"{task['title']}: {task.get('update', 'Done.')}" for task in completed
+        ],
+        "blockers": [
+            f"{task['title']}: {task.get('blocker', task.get('update', 'Blocked.'))}"
+            for task in blocked
+        ]
+        + risks,
+        "owners": dict(owners),
+        "next_steps": next_steps[:8],
         "sources": [
             "data/chat_logs.json",
             "data/task_updates.json",
             "data/meeting_notes.json",
         ],
-        "metadata": {
-            "query": query,
-            "chat_messages": len(chat_logs),
-            "tasks": len(tasks),
-            "meetings": len(meetings),
-        },
     }

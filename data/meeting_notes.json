@@ -1,23 +1,47 @@
 [
   {
     "date": "2026-04-21",
-    "title": "Project Alpha standup",
+    "title": "Atlas Pilot Delivery Standup",
     "decisions": [
       {
-        "decision": "Keep the MVP scope focused on SSO, billing connector, and dashboard read-only views."
+        "decision": "Keep pilot scope limited to SSO, billing connector validation, and read-only dashboard views."
       },
       {
-        "decision": "Move launch readiness review to Friday afternoon."
+        "decision": "Use Northstar Bank as the primary SSO validation account once metadata arrives."
       }
+    ],
+    "action_items": [
+      "Sam to follow up with Northstar Bank IT on SAML metadata.",
+      "Priya to send the dashboard preview link to Sales by Wednesday afternoon."
     ]
   },
   {
     "date": "2026-04-23",
-    "title": "Go-to-market sync",
+    "title": "Atlas Pilot Go-To-Market Sync",
     "decisions": [
       {
-        "decision": "Sales will pilot the dashboard with three customer teams before broad rollout."
+        "decision": "Customer Success will run the pilot with Northstar Bank, Vale Health, and Ridgeway Logistics."
+      },
+      {
+        "decision": "Launch readiness review stays scheduled for Friday at 15:00 with Engineering, Sales, and Support."
       }
+    ],
+    "action_items": [
+      "Mina to publish kickoff notes and pilot success criteria.",
+      "Noah to confirm whether Finance can provide Stripe sandbox access before the readiness review."
+    ]
+  },
+  {
+    "date": "2026-04-24",
+    "title": "Launch Readiness Review",
+    "decisions": [
+      {
+        "decision": "Proceed with Monday pilot kickoff if SSO metadata and Stripe sandbox access are both resolved."
+      }
+    ],
+    "action_items": [
+      "Ari to update the API changelog before pilot kickoff.",
+      "Support to open a dedicated #atlas-pilot-support channel."
     ]
   }
 ]
